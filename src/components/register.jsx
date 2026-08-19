@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-// Register segue exatamente o mesmo formato do Login: apenas o
-// <section className="login-card">, sem a imagem (que já está no AuthLayout).
 export default function Register({ onSwitchToLogin }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [telefone, setTelefone] = useState('')
+  const [cargo, setCargo] = useState('funcionario')
+  const [ubs, setUbs] = useState('CSF Dr. Luciano Adeodato')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -46,6 +47,37 @@ export default function Register({ onSwitchToLogin }) {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
+        </div>
+
+        <div className="field-group">
+          <label htmlFor="telefone">Telefone</label>
+          <input
+            id="telefone"
+            type="tel"
+            placeholder="(99) 99999-9999"
+            value={telefone}
+            onChange={(event) => setTelefone(event.target.value)}
+          />
+        </div>
+
+        <div className="field-group">
+          <label htmlFor="cargo">Cargo</label>
+          <select className="link-button" id="cargo" value={cargo} onChange={(event) => setCargo(event.target.value)}>
+            <option value="funcionario">Funcionário</option>
+            <option value="paciente">Paciente</option>
+            <option value="administrador">Administrador</option>
+          </select>
+        </div>
+
+        <div className="field-group">
+          <label htmlFor="ubs">UBS</label>
+          <select className="link-button" id="ubs" value={ubs} onChange={(event) => setUbs(event.target.value)}>
+            <option value="CSF Dr. Luciano Adeodato">CSF Dr. Luciano Adeodato</option>
+            <option value="CSF Alto da Brasília">CSF Alto da Brasília</option>
+            <option value="CSF Junco">CSF Junco</option>
+            <option value="CSF Dom Expedito">CSF Dom Expedito</option>
+            <option value="CSF Sinhá Sabóia">CSF Sinhá Sabóia</option>
+          </select>
         </div>
 
         <div className="field-group">

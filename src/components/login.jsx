@@ -1,7 +1,12 @@
+/*
+função
+ubs
+*/
 import { useState } from 'react'
 import imagePet from '../assets/image.png'
 
 export default function Login({ onSwitchToRegister }) {
+  const [userType, setUserType] = useState('funcionario')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -11,6 +16,7 @@ export default function Login({ onSwitchToRegister }) {
   function validate() {
     const newErrors = {}
 
+    
     if (!email.trim()) {
       newErrors.email = 'Email obrigatório'
     } else if (!/\S+@\S+\.\S+/.test(email)) {
@@ -48,6 +54,33 @@ export default function Login({ onSwitchToRegister }) {
       </div>
 
       <form className="login-form" onSubmit={handleSubmit} noValidate>
+        <div className="user-type-selector" aria-label="Selecione o tipo de usuário">
+          <button
+            type="button"
+            className={`user-type ${userType === 'funcionario' ? 'active' : ''}`}
+            onClick={() => setUserType('funcionario')}
+            aria-pressed={userType === 'funcionario'}
+          >
+            Funcionário
+          </button>
+          <button
+            type="button"
+            className={`user-type ${userType === 'paciente' ? 'active' : ''}`}
+            onClick={() => setUserType('paciente')}
+            aria-pressed={userType === 'paciente'}
+          >
+            Paciente
+          </button>
+          <button
+            type="button"
+            className={`user-type ${userType === 'administrador' ? 'active' : ''}`}
+            onClick={() => setUserType('administrador')}
+            aria-pressed={userType === 'administrador'}
+          >
+            Administrador
+          </button>
+        </div>
+
         <div className="field-group">
           <label htmlFor="email">E-mail</label>
           <input
